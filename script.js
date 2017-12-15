@@ -62,26 +62,34 @@ var todoList = {
       }
     });
 
-    // Case 1: If everything's true, make everything false
-    if (completedTodos === totalTodos) {
-    //   for (var i = 0; i < totalTodos; i++) {
-    //     this.todos[i].completed = false;
-    //   }
-      this.todos.forEach(function(todo) {
+    // // Case 1: If everything's true, make everything false
+    // if (completedTodos === totalTodos) {
+    //   // for (var i = 0; i < totalTodos; i++) {
+    //   //   this.todos[i].completed = false;
+    //   // }
+    //   this.todos.forEach(function(todo) {
+    //     todo.completed = false;
+    //   });
+    // // Case 2: If some todos is true, make everything true
+    // } else {
+    //   // for (var i = 0; i < totalTodos; i++) {
+    //   //   this.todos[i].completed = true;
+    //   // }
+    //   this.todos.forEach(function(todo) {
+    //     todo.completed = true;
+    //   })
+    // }
+    // // this.displayTodos();
+
+    this.todos.forEach(function(todo) {
+      // Case 1: if everything is true, make everything false
+      if (completedTodos === totalTodos) {
         todo.completed = false;
-      });
-
-    // Case 2: If some todos is true, make everything true
-    } else {
-      // for (var i = 0; i < totalTodos; i++) {
-      //   this.todos[i].completed = true;
-      // }
-      this.todos.forEach(function(todo) {
+      // Case 2: otherwise make everything true
+      } else {
         todo.completed = true;
-      });
-
-    }
-    // this.displayTodos();
+      }
+    });
   }
 };
 
