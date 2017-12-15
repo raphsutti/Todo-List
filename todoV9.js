@@ -12,7 +12,7 @@ var todoList = {
   //       if (this.todos[i].completed === true) {
   //         console.log('(x)', this.todos[i].todoText);
   //       } else {
-  //         console.log('( )', this.todos[i].todoText);
+  //         console.lv og('( )', this.todos[i].todoText);
   //       }
   //
   //     }
@@ -122,6 +122,7 @@ var handlers = {
   }
 };
 
+// Show user what list contains
 var view = {
   displayTodos: function() {
     // Select element ul

@@ -104,10 +104,17 @@ var handlers = {
     changeTodoTextInput.value = '';
     view.displayTodos();
   },
-  deleteTodo: function() {
-    var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
-    todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
-    deleteTodoPositionInput.value = '';
+  // Removed with new delete button next to list
+  // deleteTodo: function() {
+  //   var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
+  //   todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
+  //   deleteTodoPositionInput.value = '';
+  //   view.displayTodos();
+  // },
+
+  // To go with the new delete button next to item
+  deleteTodo: function(position) {
+    todoList.deleteTodo(position);
     view.displayTodos();
   },
   toggleCompleted: function() {
@@ -141,10 +148,40 @@ var view = {
         todoTextWithCompletion = ' ( ) ' + todo.todoText;
       };
 
+      // Assign ID number to the li element
+      todoLi.id = i;
       // Assign todo text
       todoLi.textContent = todoTextWithCompletion;
+      // Append delete button
+      todoLi.appendChild(this.createDeleteButton());
       // Append to ul element
       todosUl.appendChild(todoLi);
     }
+  },
+
+  // Create delete button
+  createDeleteButton: function() {
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = "Delete";
+    deleteButton.className = "deleteButton";
+    return deleteButton;
+  },
+  setUpEventListeners: function() {
+    var todosUl = document.querySelector('ul');
+    todosUl.addEventListener('click', function(event) {
+    // log event id# of it's parent, <li>
+    // console.log(event.target.parentNode.id);
+
+    // Get the element that was clicked on
+    var elementClicked = event.target;
+
+    // Check if element cliked is a delete button
+    if (elementClicked.className === "deleteButton") {
+      handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+
+      }
+    });
   }
 };
+
+view.setUpEventListeners();
