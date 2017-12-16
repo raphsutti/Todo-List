@@ -80,7 +80,6 @@ var todoList = {
     //   })
     // }
     // // this.displayTodos();
-
     this.todos.forEach(function(todo) {
       // Case 1: if everything is true, make everything false
       if (completedTodos === totalTodos) {
@@ -157,27 +156,48 @@ var view = {
     var todosUl = document.querySelector('ul');
     // Clear list elements everytime loop runs
     todosUl.innerHTML = '';
-    for (var i = 0; i < todoList.todos.length; i++) {
-      // Create li element
-      var todoLi = document.createElement('li');
-      var todo = todoList.todos[i];
-      var todoTextWithCompletion = '';
 
+    // for (var i = 0; i < todoList.todos.length; i++) {
+    //   // Create li element
+    //   var todoLi = document.createElement('li');
+    //   var todo = todoList.todos[i];
+    //   var todoTextWithCompletion = '';
+
+    //   if (todo.completed === true) {
+    //     todoTextWithCompletion = ' (x) ' + todo.todoText;
+    //   } else {
+    //     todoTextWithCompletion = ' ( ) ' + todo.todoText;
+    //   };
+
+    //   // Assign ID number to the li element
+    //   todoLi.id = i;
+    //   // Assign todo text
+    //   todoLi.textContent = todoTextWithCompletion;
+    //   // Append delete button
+    //   todoLi.appendChild(this.createDeleteButton());
+    //   // Append to ul element
+    //   todosUl.appendChild(todoLi);
+    // }
+    todoList.todos.forEach(function(todo, position) {
+    // Create li element
+      var todoLi = document.createElement('li');
+      var todoTextWithCompletion = '';
       if (todo.completed === true) {
         todoTextWithCompletion = ' (x) ' + todo.todoText;
       } else {
         todoTextWithCompletion = ' ( ) ' + todo.todoText;
       };
-
       // Assign ID number to the li element
-      todoLi.id = i;
+      todoLi.id = position;
       // Assign todo text
       todoLi.textContent = todoTextWithCompletion;
       // Append delete button
       todoLi.appendChild(this.createDeleteButton());
       // Append to ul element
       todosUl.appendChild(todoLi);
-    }
+    // }
+    }, this)
+
   },
 
   // Create delete button
